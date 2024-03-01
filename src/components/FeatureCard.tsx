@@ -25,7 +25,7 @@ export const FeatureCard = ({
 
   const containerClasses = `flex flex-col ${alignmentClasses[orientation]} ${
     outlined ? 'border border-gray-200 rounded-sm' : ''
-  } p-3 space-y-4`;
+  } p-3 space-y-4 shadow-md`;
 
   return (
     <div className={`${containerClasses} ${className}`}>
