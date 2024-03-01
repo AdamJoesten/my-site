@@ -1,7 +1,51 @@
 import * as React from 'react';
 import type { HeadFC, PageProps } from 'gatsby';
+import { FeatureCard } from '../components/FeatureCard';
+import { SpockHandGesture } from '../components/icons/SpockHandGesture';
+import { Developer } from '../components/icons/Developer';
+import { OrthogonalView } from '../components/icons/OrthogonalView';
+import { Rocket } from '../components/icons/Rocket';
 
 const IndexPage: React.FC<PageProps> = () => {
+  const [isHovered, setIsHovered] = React.useState(false);
+  const featureCards: Array<React.ComponentProps<typeof FeatureCard>> = [
+    {
+      title: 'test',
+      subtitle: 'testtest',
+      icon: (
+        <div
+          className="relative size-6"
+          onMouseOver={() => setIsHovered(true)}
+          onMouseOut={() => setIsHovered(false)}
+        >
+          <Developer
+            className={`absolute transition-opacity duration-300 ${isHovered ? 'opacity-0' : 'opacity-100'}`}
+          />
+          <Rocket
+            className={`absolute transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
+          />
+        </div>
+      ),
+      className: 'flex-1'
+    },
+    {
+      title: 'test',
+      subtitle: 'testtest',
+      icon: (
+        <OrthogonalView className="transform duration-500 hover:rotate-90 hover:skew-x-12 hover:scale-110 motion-reduce:transform-none" />
+      ),
+      className: 'flex-1'
+    },
+    {
+      title: 'test',
+      subtitle: 'testtest',
+      icon: (
+        <SpockHandGesture className="transform duration-300 hover:scale-125 hover:animate-pulse motion-reduce:transform-none" />
+      ),
+      className: 'flex-1'
+    },
+  ];
+
   return (
     <main className="">
       {/** Hero Section */}
@@ -44,12 +88,20 @@ const IndexPage: React.FC<PageProps> = () => {
               Burlington, VT
             </h1>
             <h2 className="mt-6 text-lg leading-8 text-gray-600">
-             I like to build <span className='text-blue-500'>incredible products</span> with <span className='text-blue-500'>incredible people</span>. 
+              I like to build{' '}
+              <span className="text-blue-500">incredible products</span> with{' '}
+              <span className="text-blue-500">incredible people</span>.
             </h2>
           </div>
         </div>
       </div>
-
+      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="md:flex md:justify-between md:space-x-4">
+          {featureCards.map((featureCard, idx) => (
+            <FeatureCard key={`feature-card-${idx + 1}`} {...featureCard} />
+          ))}
+        </div>
+      </div>
     </main>
   );
 };
