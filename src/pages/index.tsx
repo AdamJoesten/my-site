@@ -7,42 +7,65 @@ import { OrthogonalView } from '../components/icons/OrthogonalView';
 import { Rocket } from '../components/icons/Rocket';
 
 const IndexPage: React.FC<PageProps> = () => {
-  const [isHovered, setIsHovered] = React.useState(false);
+  const [isDeveloperHovered, setIsDeveloperHovered] = React.useState(false);
+  const [isSpockHovered, setIsSpockHovered] = React.useState(false);
+  const [isOrthogonalHovered, setIsOrthogonalHovered] = React.useState(false);
   const featureCards: Array<React.ComponentProps<typeof FeatureCard>> = [
     {
-      title: 'test',
-      subtitle: 'testtest',
+      title: 'non consectetur a erat nam at.',
+      subtitle:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       icon: (
         <div
           className="relative size-6"
-          onMouseOver={() => setIsHovered(true)}
-          onMouseOut={() => setIsHovered(false)}
+          onMouseOver={() => setIsDeveloperHovered(true)}
+          onMouseOut={() => setIsDeveloperHovered(false)}
         >
           <Developer
-            className={`absolute transition-opacity duration-300 ${isHovered ? 'opacity-0' : 'opacity-100'}`}
+            className={`absolute duration-300 ${isDeveloperHovered ? 'opacity-0' : 'opacity-100'}`}
           />
           <Rocket
-            className={`absolute transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
+            className={`absolute transform delay-150 duration-300 hover:scale-150 motion-reduce:transform-none ${isDeveloperHovered ? 'stroke-blue-500 opacity-100' : 'stroke-black opacity-0'}`}
           />
         </div>
       ),
-      className: 'flex-1'
+      className: 'flex-1',
     },
     {
-      title: 'test',
-      subtitle: 'testtest',
+      title: 'phasellus vestibulum lorem sed risus ultricies tristique nulla.',
+      subtitle:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       icon: (
-        <OrthogonalView className="transform duration-500 hover:rotate-90 hover:skew-x-12 hover:scale-110 motion-reduce:transform-none" />
+        <div
+          onMouseOver={() => setIsOrthogonalHovered(true)}
+          onMouseOut={() => setIsOrthogonalHovered(false)}
+        >
+          <OrthogonalView
+            className={`transform duration-500 hover:rotate-90 hover:skew-x-12 hover:scale-110 motion-reduce:transform-none ${isOrthogonalHovered ? 'stroke-blue-500' : 'stroke-black'}`}
+          />
+        </div>
       ),
-      className: 'flex-1'
+      className: 'flex-1',
     },
     {
-      title: 'test',
-      subtitle: 'testtest',
+      title: 'tellus elementum sagittis vitae et leo duis ut diam quam.',
+      subtitle:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       icon: (
-        <SpockHandGesture className="transform duration-300 hover:scale-125 hover:animate-pulse motion-reduce:transform-none" />
+        <div
+          className="relative flex size-6"
+          onMouseOver={() => setIsSpockHovered(true)}
+          onMouseOut={() => setIsSpockHovered(false)}
+        >
+          <SpockHandGesture
+            className={`absolute ${isSpockHovered ? 'animate-ping stroke-blue-500' : ''}`}
+          />
+          <SpockHandGesture
+            className={`relative ${isSpockHovered ? 'stroke-blue-500' : 'stroke-black'}`}
+          />
+        </div>
       ),
-      className: 'flex-1'
+      className: 'flex-1',
     },
   ];
 
@@ -53,7 +76,7 @@ const IndexPage: React.FC<PageProps> = () => {
         {/** Background */}
         <div className="relative z-10">
           <div className="absolute inset-x-0 top-1/2 -z-10 flex -translate-y-1/2 justify-center overflow-hidden [mask-image:radial-gradient(50%_45%_at_50%_55%,white,transparent)]">
-            <svg className="h-[60rem] w-[100rem] flex-none" aria-hidden="true">
+            <svg className="h-[90rem] w-[100rem] flex-none" aria-hidden="true">
               <defs>
                 <pattern
                   id="graph-paper"
@@ -96,7 +119,7 @@ const IndexPage: React.FC<PageProps> = () => {
         </div>
       </div>
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="md:flex md:justify-between md:space-x-4">
+        <div className="flex max-sm:flex-col max-sm:space-y-4 sm:space-x-4">
           {featureCards.map((featureCard, idx) => (
             <FeatureCard key={`feature-card-${idx + 1}`} {...featureCard} />
           ))}

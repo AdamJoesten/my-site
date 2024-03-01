@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { IconProps } from './types';
 
-export const Rocket = ({ className = '' }: IconProps) => {
+export const Rocket = ({ className = 'stroke-black' }: IconProps) => {
   return (
     <svg
-      className={`${className} stroke-black`}
+      className={className}
       width="24px"
       height="24px"
       viewBox="0 0 24 24"
