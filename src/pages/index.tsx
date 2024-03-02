@@ -5,6 +5,8 @@ import { SpockHandGesture } from '../components/icons/SpockHandGesture';
 import { Developer } from '../components/icons/Developer';
 import { OrthogonalView } from '../components/icons/OrthogonalView';
 import { Rocket } from '../components/icons/Rocket';
+import { GithubCircle } from '../components/icons/GithubCircle';
+import { LinkedIn } from '../components/icons/LinkedIn';
 
 const IndexPage: React.FC<PageProps> = () => {
   const [isDeveloperHovered, setIsDeveloperHovered] = React.useState(false);
@@ -16,62 +18,68 @@ const IndexPage: React.FC<PageProps> = () => {
       subtitle:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       icon: (
-        <div
-          className="relative size-6"
-          onMouseOver={() => setIsDeveloperHovered(true)}
-          onMouseOut={() => setIsDeveloperHovered(false)}
-        >
+        <div className="relative size-6">
           <Developer
-            className={`absolute duration-300 ${isDeveloperHovered ? 'opacity-0' : 'opacity-100'}`}
+            className={`absolute transition delay-150 duration-300 ease-in-out ${isDeveloperHovered ? 'opacity-0' : 'opacity-100'}`}
           />
           <Rocket
-            className={`absolute transform delay-150 duration-300 hover:scale-150 motion-reduce:transform-none ${isDeveloperHovered ? 'stroke-blue-500 opacity-100' : 'stroke-black opacity-0'}`}
+            className={`absolute transition delay-150 duration-300 ease-in-out ${isDeveloperHovered ? 'scale-150 stroke-blue-500 opacity-100' : 'stroke-black opacity-0'}`}
           />
         </div>
       ),
       className: 'flex-1',
+      hoverable: true,
+      onMouseOut: () => setIsDeveloperHovered(false),
+      onMouseOver: () => setIsDeveloperHovered(true),
     },
     {
       title: 'phasellus vestibulum lorem sed risus ultricies tristique nulla.',
       subtitle:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       icon: (
-        <div
-          onMouseOver={() => setIsOrthogonalHovered(true)}
-          onMouseOut={() => setIsOrthogonalHovered(false)}
-        >
+        <div>
           <OrthogonalView
-            className={`transform duration-500 hover:rotate-90 hover:skew-x-12 hover:scale-110 motion-reduce:transform-none ${isOrthogonalHovered ? 'stroke-blue-500' : 'stroke-black'}`}
+            className={`transition delay-150 duration-300 ease-in-out  ${isOrthogonalHovered ? 'rotate-90 skew-x-12 scale-110 stroke-blue-500  ' : 'stroke-black'}`}
           />
         </div>
       ),
       className: 'flex-1',
+      hoverable: true,
+      onMouseOut: () => setIsOrthogonalHovered(false),
+      onMouseOver: () => setIsOrthogonalHovered(true),
     },
     {
       title: 'tellus elementum sagittis vitae et leo duis ut diam quam.',
       subtitle:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       icon: (
-        <div
-          className="relative flex size-6"
-          onMouseOver={() => setIsSpockHovered(true)}
-          onMouseOut={() => setIsSpockHovered(false)}
-        >
+        <div className="relative flex size-6">
           <SpockHandGesture
-            className={`absolute ${isSpockHovered ? 'animate-ping stroke-blue-500' : ''}`}
+            className={`absolute transition duration-300  ${isSpockHovered ? 'scale-110 animate-[ping_1s_ease-in-out_150ms_infinite] stroke-blue-500' : ''}`}
           />
           <SpockHandGesture
-            className={`relative ${isSpockHovered ? 'stroke-blue-500' : 'stroke-black'}`}
+            className={`absolute transition delay-150 duration-300 ${isSpockHovered ? 'scale-110 stroke-blue-500' : 'stroke-black '}`}
           />
         </div>
       ),
       className: 'flex-1',
+      hoverable: true,
+      onMouseOut: () => setIsSpockHovered(false),
+      onMouseOver: () => setIsSpockHovered(true),
     },
   ];
 
   return (
     <main className="">
       {/** Hero Section */}
+      <div className="absolute right-0 top-0 z-20 flex space-x-1 p-4 sm:p-6 lg:p-8">
+        <a href="https://github.com/AdamJoesten">
+          <GithubCircle />
+        </a>
+        <a href="https://linkedin.com/in/AdamJoesten">
+          <LinkedIn />
+        </a>
+      </div>
       <div className="relative bg-gradient-to-b from-comet-50 via-transparent pb-12 pt-20 sm:pb-16 sm:pt-32 lg:pb-24 xl:pb-32 xl:pt-40">
         {/** Background */}
         <div className="relative z-10">
